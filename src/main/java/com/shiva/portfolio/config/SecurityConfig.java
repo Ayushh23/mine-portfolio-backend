@@ -64,7 +64,11 @@ public class SecurityConfig {
         
         // Get allowed origins from environment variable
         String frontendUrl = System.getenv("FRONTEND_URL");
-        List<String> allowedOrigins = new java.util.ArrayList<>(Arrays.asList("http://localhost:5173", "http://localhost:3000"));
+        List<String> allowedOrigins = new java.util.ArrayList<>(Arrays.asList(
+            "http://localhost:5173",
+            "http://localhost:3000",
+            "https://mine-portfolio-tawny.vercel.app"
+        ));
         if (frontendUrl != null && !frontendUrl.isEmpty()) {
             allowedOrigins.add(frontendUrl);
         }
