@@ -10,6 +10,7 @@ import com.shiva.portfolio.repository.SkillRepository;
 import com.shiva.portfolio.model.*;
 import com.shiva.portfolio.repository.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -28,17 +29,20 @@ public class AdminPortfolioController {
 
     // --- Projects ---
     @PostMapping("/projects")
+    @CacheEvict(value = "portfolioData", allEntries = true)
     public ResponseEntity<Project> createProject(@RequestBody Project project) {
         return ResponseEntity.ok(projectRepository.save(project));
     }
 
     @PutMapping("/projects/{id}")
+    @CacheEvict(value = "portfolioData", allEntries = true)
     public ResponseEntity<Project> updateProject(@PathVariable String id, @RequestBody Project project) {
         project.setId(id);
         return ResponseEntity.ok(projectRepository.save(project));
     }
 
     @DeleteMapping("/projects/{id}")
+    @CacheEvict(value = "portfolioData", allEntries = true)
     public ResponseEntity<Void> deleteProject(@PathVariable String id) {
         projectRepository.deleteById(id);
         return ResponseEntity.ok().build();
@@ -46,17 +50,20 @@ public class AdminPortfolioController {
 
     // --- Skills ---
     @PostMapping("/skills")
+    @CacheEvict(value = "portfolioData", allEntries = true)
     public ResponseEntity<Skill> createSkill(@RequestBody Skill skill) {
         return ResponseEntity.ok(skillRepository.save(skill));
     }
 
     @PutMapping("/skills/{id}")
+    @CacheEvict(value = "portfolioData", allEntries = true)
     public ResponseEntity<Skill> updateSkill(@PathVariable String id, @RequestBody Skill skill) {
         skill.setId(id);
         return ResponseEntity.ok(skillRepository.save(skill));
     }
 
     @DeleteMapping("/skills/{id}")
+    @CacheEvict(value = "portfolioData", allEntries = true)
     public ResponseEntity<Void> deleteSkill(@PathVariable String id) {
         skillRepository.deleteById(id);
         return ResponseEntity.ok().build();
@@ -64,17 +71,20 @@ public class AdminPortfolioController {
 
     // --- Experiences ---
     @PostMapping("/experiences")
+    @CacheEvict(value = "portfolioData", allEntries = true)
     public ResponseEntity<Experience> createExperience(@RequestBody Experience experience) {
         return ResponseEntity.ok(experienceRepository.save(experience));
     }
 
     @PutMapping("/experiences/{id}")
+    @CacheEvict(value = "portfolioData", allEntries = true)
     public ResponseEntity<Experience> updateExperience(@PathVariable String id, @RequestBody Experience experience) {
         experience.setId(id);
         return ResponseEntity.ok(experienceRepository.save(experience));
     }
 
     @DeleteMapping("/experiences/{id}")
+    @CacheEvict(value = "portfolioData", allEntries = true)
     public ResponseEntity<Void> deleteExperience(@PathVariable String id) {
         experienceRepository.deleteById(id);
         return ResponseEntity.ok().build();
@@ -82,17 +92,20 @@ public class AdminPortfolioController {
 
     // --- Testimonials ---
     @PostMapping("/testimonials")
+    @CacheEvict(value = "portfolioData", allEntries = true)
     public ResponseEntity<Testimonial> createTestimonial(@RequestBody Testimonial testimonial) {
         return ResponseEntity.ok(testimonialRepository.save(testimonial));
     }
 
     @PutMapping("/testimonials/{id}")
+    @CacheEvict(value = "portfolioData", allEntries = true)
     public ResponseEntity<Testimonial> updateTestimonial(@PathVariable String id, @RequestBody Testimonial testimonial) {
         testimonial.setId(id);
         return ResponseEntity.ok(testimonialRepository.save(testimonial));
     }
 
     @DeleteMapping("/testimonials/{id}")
+    @CacheEvict(value = "portfolioData", allEntries = true)
     public ResponseEntity<Void> deleteTestimonial(@PathVariable String id) {
         testimonialRepository.deleteById(id);
         return ResponseEntity.ok().build();
@@ -105,6 +118,7 @@ public class AdminPortfolioController {
     }
 
     @PutMapping("/settings")
+    @CacheEvict(value = "portfolioData", allEntries = true)
     public ResponseEntity<SiteSetting> updateSetting(@RequestBody Map<String, String> payload) {
         String key = payload.get("key");
         String value = payload.get("value");

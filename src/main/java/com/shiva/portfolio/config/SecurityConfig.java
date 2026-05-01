@@ -67,7 +67,7 @@ public class SecurityConfig {
         List<String> allowedOrigins = new java.util.ArrayList<>(Arrays.asList(
             "http://localhost:5173",
             "http://localhost:3000",
-            "https://mine-portfolio-six-bay.vercel.app/"
+            "https://mine-portfolio-six-bay.vercel.app"
         ));
         if (frontendUrl != null && !frontendUrl.isEmpty()) {
             allowedOrigins.add(frontendUrl);
