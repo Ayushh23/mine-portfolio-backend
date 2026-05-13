@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,6 +23,7 @@ public class EmailService {
      * @param senderEmail   Email entered by the visitor
      * @param message       Message body entered by the visitor
      */
+    @Async
     public void sendContactEmail(String senderName, String senderEmail, String message) {
         SimpleMailMessage mail = new SimpleMailMessage();
 
